@@ -34,7 +34,7 @@ $columns = array(
 $indexes = array(
 	array(
 		'type' => 'primary',
-		'columns' => array('id')
+		'columns' => array('id_member')
 	),
 );
 $smcFunc['db_create_table']('{db_prefix}hide_topics', $columns, $indexes, array(), 'update_remove');
