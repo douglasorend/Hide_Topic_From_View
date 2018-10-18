@@ -102,10 +102,10 @@ function HTFV_Process(&$board)
 	// Let's find the most recent topic that isn't in the "hide topics" list:
 	$result = $smcFunc['db_query']('', '
 		SELECT 
-			IFNULL(m.poster_time, 0) AS poster_time, IFNULL(mem.member_name, m.poster_name) AS poster_name,
-			m.subject, m.id_topic, IFNULL(mem.real_name, m.poster_name) AS real_name, t.id_topic,
+			COALESCE(m.poster_time, 0) AS poster_time, COALESCE(mem.member_name, m.poster_name) AS poster_name,
+			m.subject, m.id_topic, COALESCE(mem.real_name, m.poster_name) AS real_name, t.id_topic,
 			' . ($user_info['is_guest'] ? ' 1 AS is_read, 0 AS new_from' : '
-			(IFNULL(lb.id_msg, 0) >= b.id_msg_updated) AS is_read, IFNULL(lb.id_msg, -1) + 1 AS new_from') . '
+			(COALESCE(lb.id_msg, 0) >= b.id_msg_updated) AS is_read, COALESCE(lb.id_msg, -1) + 1 AS new_from') . '
 		FROM {db_prefix}topics AS t
 			LEFT JOIN {db_prefix}boards AS b ON (b.id_board = t.id_board)
 			LEFT JOIN {db_prefix}messages AS m ON (m.id_msg = t.id_last_msg)

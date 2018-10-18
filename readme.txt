@@ -1,5 +1,5 @@
 [hr]
-[center][color=red][size=16pt][b]HIDE TOPIC FROM VIEW v1.1[/b][/size][/color]
+[center][color=red][size=16pt][b]HIDE TOPIC FROM VIEW v1.2[/b][/size][/color]
 [url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]By Dougiefresh[/b][/url] -> [url=http://custom.simplemachines.org/mods/index.php?mod=4126]Link to Mod[/url]
 [/center]
 [hr]

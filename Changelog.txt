@@ -1,3 +1,6 @@
+v1.2 - July 11th, 2017
+o Replaced IFNULL with COALESCE in database queries for better Postgres support.
+
 v1.1 - March 16th, 2017
 o Added support for SMF 2.1 Beta 2.
 o Added "Hidden Topics" profile page to show list of hidden topics.
