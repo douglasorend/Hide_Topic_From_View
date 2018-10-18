@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+<id>Dougiefresh:HideTopic</id>
+<name>Hide Topic From View</name>
+<version>1.0</version>
+
+<file name="$languagedir/index.english.php">
+	<operation>
+		<search position="end" />
+		<add><![CDATA[
+$txt['htfv_showall'] = 'Show All Topics';
+$txt['htfv_show'] = 'Show Topic';
+$txt['htfv_hide'] = 'Hide Topic';
+]]></add>
+	</operation>
+</file>
+</modification>
