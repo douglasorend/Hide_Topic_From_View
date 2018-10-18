@@ -1,2 +1,8 @@
-v1.0 - Unpublished
+v1.1 - March 16th, 2017
+o Added support for SMF 2.1 Beta 2.
+o Added "Hidden Topics" profile page to show list of hidden topics.
+o Added SSI support for other mods that use SSI functions.
+o Added Unread Topics support.
+
+v1.0 - December 16th, 2016
 o Initial release to the public

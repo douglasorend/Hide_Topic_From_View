@@ -21,7 +21,7 @@ if (SMF == 'SSI')
 $hook_functions = array(
 	'integrate_pre_include' => '$sourcedir/Subs-HideTopics.php',
 	'integrate_load_theme' => 'HTFV_Load',
-	'integrate_actions' => 'HTFV_Actions',
+	'integrate_profile_areas' => 'HTFV_Profile',
 	'integrate_messageindex_buttons' => 'HTFV_MessageIndex',
 	'integrate_display_buttons' => 'HTFV_Display',
 );

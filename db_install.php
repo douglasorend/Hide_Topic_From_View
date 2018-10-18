@@ -13,13 +13,6 @@ db_extend('packages');
 // Build the Hide Topic table:
 $columns = array(
 	array(
-		'name' => 'id',
-		'type' => 'int',
-		'size' => 8,
-		'unsigned' => false,
-		'auto' => true,
-	),
-	array(
 		'name' => 'id_member',
 		'type' => 'int',
 		'size' => 8,

@@ -31,7 +31,7 @@ function HTFV_Load()
 				'id_member' => (int) $user_info['id'],
 			)
 		);
-		$hide_topics = $affected_boards = array();
+		$hide_topics = $affected_boards = array(0);
 		while ($row = $smcFunc['db_fetch_assoc']($request))
 		{
 			$hide_topics[] = $row['id_topic'];
@@ -43,82 +43,20 @@ function HTFV_Load()
 	}
 }
 
-function HTFV_Actions(&$actions)
+function HTFV_Profile(&$areas)
 {
-	$actions['htfv_hide'] = array('Subs-HideTopics.php', 'HTFV_Change');
-	$actions['htfv_show'] = array('Subs-HideTopics.php', 'HTFV_Change');
-	$actions['htfv_showall'] = array('Subs-HideTopics.php', 'HTFV_ShowAll');
-}
+	global $txt;
 
-function HTFV_Change()
-{
-	global $user_info, $smcFunc, $topic;
-
-	// Abort if we are not supposed to be here!
-	if (empty($user_info['id']) || empty($topic))
-		fatal_lang_error('no_topic_id', false);
-
-	// Get the board number that this topic resides in:
-	$request = $smcFunc['db_query']('', '
-		SELECT id_board
-		FROM {db_prefix}topics
-		WHERE id_topic = {int:id_topic}',
-		array(
-			'id_topic' => (int) $topic,
+	// Add this action before all other profile actions:
+	$areas['info']['areas']['hidden_topics'] = array(
+		'label' => $txt['HTFV_Hidden_Topics'],
+		'file' => 'Profile-HideTopics.php',
+		'function' => 'HTFV_Hidden_Topics',
+		'permission' => array(
+			'own' => array('issue_warning'),
+			'any' => array(''),
 		)
 	);
-	list($board) = $smcFunc['db_fetch_row']($request);
-	$smcFunc['db_free_result']($request);
-
-	// Remove any existing entries for this topic:
-	$smcFunc['db_query']('', '
-		DELETE FROM {db_prefix}hide_topics
-		WHERE id_member = {int:id_member}
-			AND id_topic = {int:id_topic}',
-		array(
-			'id_member' => (int) $user_info['id'],
-			'id_topic' => (int) $topic,
-		)
-	);
-
-	// If we are hiding the topic, do so here:
-	if ($_GET['action'] == 'htfv_hide')
-	{
-		$smcFunc['db_insert']('insert',
-			'{db_prefix}hide_topics',
-			array('id_member' => 'int', 'id_topic' => 'int', 'id_board' => 'int'),
-			array((int) $user_info['id'], (int) $topic, (int) $board),
-			array('id_member', 'id_topic', 'id_board')
-		);
-	}
-	
-	// Force recache of the hidden topics for this user, then go to the board:
-	unset($_SESSION['hide_topics']);
-	redirectExit('board=' . $board);
-}
-
-function HTFV_ShowAll()
-{
-	global $user_info, $smcFunc, $board;
-
-	// Abort if we are not supposed to be here!
-	if (empty($user_info['id']) || empty($board))
-		fatal_lang_error('no_board', false);
-
-	// Remove any existing entries for this topic:
-	$smcFunc['db_query']('', '
-		DELETE FROM {db_prefix}hide_topics
-		WHERE id_member = {int:id_member}
-			AND id_board = {int:id_board}',
-		array(
-			'id_member' => (int) $user_info['id'],
-			'id_board' => (int) $board,
-		)
-	);
-
-	// Force recache of the hidden topics for this user, then go to the board:
-	unset($_SESSION['hide_topics']);
-	redirectExit('board=' . $board);
 }
 
 function HTFV_MessageIndex(&$buttons)
@@ -129,13 +67,13 @@ function HTFV_MessageIndex(&$buttons)
 		$buttons['htfv_showall'] = array(
 			'text' => 'htfv_showall', 
 			'lang' => true, 
-			'url' => $scripturl . '?action=htfv_showall;board=' . $board,
+			'url' => $scripturl . '?action=profile;area=hidden_topics;sa=showall;board=' . $board . ';' . $context['session_var'] . '=' . $context['session_id'],
 		);
 }
 
 function HTFV_Display(&$buttons)
 {
-	global $topic, $scripturl, $user_info;
+	global $topic, $scripturl, $user_info, $context;
 
 	if (empty($user_info['id']) || empty($topic))
 		return;
@@ -143,13 +81,13 @@ function HTFV_Display(&$buttons)
 		$buttons['htfv_show'] = array(
 			'text' => 'htfv_show', 
 			'lang' => true, 
-			'url' => $scripturl . '?action=htfv_show;topic=' . $topic,
+			'url' => $scripturl . '?action=profile;area=hidden_topics;sa=show;topic=' . $topic . ';' . $context['session_var'] . '=' . $context['session_id'],
 		);
 	else
 		$buttons['htfv_hide'] = array(
 			'text' => 'htfv_hide', 
 			'lang' => true, 
-			'url' => $scripturl . '?action=htfv_hide;topic=' . $topic,
+			'url' => $scripturl . '?action=profile;area=hidden_topics;sa=hide;topic=' . $topic . ';' . $context['session_var'] . '=' . $context['session_id'],
 		);
 }
 

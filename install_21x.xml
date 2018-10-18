@@ -21,8 +21,7 @@
 	
 	<!-- ssi_recentTopics function -->
 	<operation>
-		<search position="before"><![CDATA[AND b.id_board NOT IN ({array_int:exclude_boards})') . '
-			' . (empty($include_boards) ? '' : ']]></search>
+		<search position="before"><![CDATA[AND b.id_board NOT IN ({array_int:exclude_boards})') . '' . (empty($include_boards) ? '' : ']]></search>
 		<add><![CDATA[', !empty($_SESSION['hide_topics']) ? '
 			AND t.id_topic NOT IN ({array_int:hide_topics})' : '', ']]></add>
 	</operation>
