@@ -5,7 +5,7 @@
 	<id>Dougiefresh:HideTopic</id>
 	<name>Hide Topic From View</name>
 	<type>modification</type>
-	<version>1.3</version>
+	<version>1.4</version>
 
 	<install for="2.0 - 2.0.99">
 		<readme parsebbc="true">readme.txt</readme>
@@ -13,6 +13,7 @@
 		<database>db_install.php</database>
 		<modification>install_20x.xml</modification>
 		<modification>language_english.xml</modification>
+		<modification>language_spanish_latin.xml</modification>
 		<require-file name="Profile-HideTopics.php" destination="$sourcedir" />
 		<require-file name="Subs-HideTopics.php" destination="$sourcedir" />
 	</install>
@@ -20,6 +21,7 @@
 		<code>add_remove_hooks.php</code>
 		<modification reverse="true">install_20x.xml</modification>
 		<modification reverse="true">language_english.xml</modification>
+		<modification reverse="true">language_spanish_latin.xml</modification>
 		<remove-file name="$sourcedir/Profile-HideTopics.php" />
 		<remove-file name="$sourcedir/Subs-HideTopics.php" />
 	</uninstall>
@@ -30,6 +32,7 @@
 		<database>db_install.php</database>
 		<modification>install_21x.xml</modification>
 		<modification>language_english.xml</modification>
+		<modification>language_spanish_latin.xml</modification>
 		<require-file name="Profile-HideTopics.php" destination="$sourcedir" />
 		<require-file name="Subs-HideTopics.php" destination="$sourcedir" />
 	</install>
@@ -37,6 +40,7 @@
 		<code>add_remove_hooks.php</code>
 		<modification reverse="true">install_21x.xml</modification>
 		<modification reverse="true">language_english.xml</modification>
+		<modification reverse="true">language_spanish_latin.xml</modification>
 		<remove-file name="$sourcedir/Profile-HideTopics.php" />
 		<remove-file name="$sourcedir/Subs-HideTopics.php" />
 	</uninstall>
