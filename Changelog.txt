@@ -1,3 +1,7 @@
+v1.5 - October 17th, 2018
+o No functionality change.
+o Updated documentation to point to new website.
+
 v1.4 - March 15th, 2018
 o Added Spanish Latin translation, courtsey of [url=https://www.simplemachines.org/community/index.php?action=profile;u=322597]Rock Lee[/url]!
 
